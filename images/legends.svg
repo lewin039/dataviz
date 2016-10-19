@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 110.7 433.8" style="enable-background:new 0 0 110.7 433.8;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#610A0B;stroke-width:5;stroke-miterlimit:10;}
+	.st1{fill:#610A0B;}
+	.st2{font-family:'OpenSans';}
+	.st3{font-size:17.8055px;}
+	.st4{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-miterlimit:10;}
+	.st5{fill:#FFFFFF;}
+	.st6{fill:none;stroke:#FCD842;stroke-width:5;stroke-miterlimit:10;}
+	.st7{fill:#FCD842;}
+	.st8{fill:none;stroke:#FF222D;stroke-width:5;stroke-miterlimit:10;}
+	.st9{fill:#FF222D;}
+	.st10{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<circle class="st0" cx="58.9" cy="44.3" r="20.8"/>
+		<g>
+			<text transform="matrix(1 0 0 1 13.2688 89.7699)" class="st1 st2 st3">Craft Beer</text>
+		</g>
+	</g>
+	<g>
+		<circle class="st4" cx="56.2" cy="360" r="20.8"/>
+		<g>
+			<text transform="matrix(1 0 0 1 14.5901 405.4735)" class="st5 st2 st3">Miller Lite</text>
+		</g>
+	</g>
+	<g>
+		<circle class="st6" cx="56.9" cy="254.7" r="20.8"/>
+		<g>
+			<text transform="matrix(1 0 0 1 24.9147 300.2388)" class="st7 st2 st3">Corona</text>
+		</g>
+	</g>
+	<g>
+		<circle class="st8" cx="56.2" cy="149.5" r="20.8"/>
+		<g>
+			<text transform="matrix(1 0 0 1 11.5993 195.0041)" class="st9 st2 st3">Budweiser</text>
+		</g>
+	</g>
+</g>
+<rect x="1220.3" y="433.8" class="st10" width="149.7" height="382"/>
+<rect x="1220.3" y="815.8" class="st10" width="149.7" height="382"/>
+<rect x="1220.3" y="1197.8" class="st10" width="149.7" height="382"/>
+</svg>

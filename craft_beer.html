@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="d3.min.js"></script>
+		<title>Interactive D3 Scatterplot</title>
+	</head>
+
+	<style>
+
+		.tooltip { /* CSS styles of tooltip that will be created in line 80 */
+  			position: relative;
+  			width: 100px;
+  			height: 28px;
+  			font-family: Helvetica; /* typography styles for tooltip */
+  			text-align: center; /* ditto */
+  			color: #F2772A;; /* ditto */
+  			pointer-events: none; /* makes mouse cursor ignore this element: necessary for proper execution of hover state event below */
+		}
+
+		.craftbeer { /* initial state of the circles */
+   			fill: #F2772A;
+   			stroke: #610A0B;
+   			stroke-width: 2;
+   			-webkit-transition: 0.5s;
+		}
+
+		.craftbeer:hover { /* hover state of bars: style change when mouse cursor is over a circle */
+			r: 45px;
+			fill: #610A0B;
+   			-webkit-transition: 0.5s;
+		}
+
+		.corona { /* initial state of the circles */
+   			fill: #F2772A;
+   			stroke: #FCD842;
+   			stroke-width: 2;
+   			-webkit-transition: 0.5s;
+		}
+
+		.corona:hover { /* hover state of bars: style change when mouse cursor is over a circle */
+			r: 45px;
+			fill: #FCD842;
+   			-webkit-transition: 0.5s;
+		}
+
+		.millerlite { /* initial state of the circles */
+   			fill: #F2772A;
+   			stroke: white;
+   			stroke-width: 2;
+   			-webkit-transition: 0.5s;
+		}
+
+		.millerlite:hover { /* hover state of bars: style change when mouse cursor is over a circle */
+			r: 45px;
+			fill: white;
+   			-webkit-transition: 0.5s;
+		}
+
+		.budweiser { /* initial state of the circles */
+   			fill: #F2772A;
+   			stroke: #FF222D;
+   			stroke-width: 2;
+   			-webkit-transition: 0.5s;
+		}
+
+		.budweiser:hover { /* hover state of bars: style change when mouse cursor is over a circle */
+			r: 45px;
+			fill: #FF222D;
+   			-webkit-transition: 0.5s;
+		}
+
+		p {
+			font-family: 'Open Sans', sans-serif;
+			font-style: Regular;
+			font-size: 14px;
+			color: #610A0B;
+			text-align: center;
+	
+		}
+
+		h1 {
+			font-family: 'effra', sans-serif;
+			font-weight: 900;
+			font-size: 21px;
+			color: #610A0B;
+			text-align: center;
+
+		}
+
+		body {
+
+			background-color: #F2772A;
+		}
+
+		.legends {
+			position: relative;
+			padding-top: 25px;
+			padding-bottom: 0px;
+			padding-left: 340px;
+
+		}
+
+		hr {
+
+			width: 475px;
+			background-color: red;
+		}
+
+		.xaxis {
+
+			padding-left: 8px;
+
+
+		}
+
+		.header {
+			
+			height:100px;
+			position: fixed;
+			width:100%;
+			z-index: -1;
+			padding-left: 250px;
+			padding-top: 35px;
+			
+		}
+		.headers {
+			position: fixed;
+			width: 100%;
+			z-index: -1;
+			padding-left: 50px;
+
+
+		}
+
+		.headerz {
+			z-index: -1;
+
+
+		}
+
+		.container {
+
+			height: 200px;
+			width: 100%;
+		}
+
+		#superbowl {
+			font-size: 13px;
+			font-family: Open Sans;
+			color: #FF222D;
+			position: absolute;
+			padding-left: 1060px;
+			padding-top: 1730px;
+			z-index: -1;
+		}
+
+		#chart {
+			position: absolute;
+			top: 300px;
+			left: 55px;
+		}
+
+		#rebrand {
+			position: absolute;
+			padding-top: 250px;
+			padding-left: 300px;
+			color: white;
+			font-family: Open Sans;
+			font-size: 13px;
+		}
+
+		
+
+	</style>
+
+	<body>
+
+		<head> <link href="https://fonts.googleapis.com/css?family=Effra|Open+Sans" rel="stylesheet">
+ 		</head>
+ 
+			<h1> Visualizing National Consumer Interest in Beers</h1>
+			<hr> </hr>
+			<p> Do Breweries gain success and a positive reputation by fitting in through <br> </br>
+			brand aesthetic &  appearance, or, is it the old fashioned commitment to<br> </br>
+			values & mission that will win the consumers over at the end of the day? <br> </br>
+			Google trends allows us to visualize consumer interest changes between <br> </br>Craft Beer, Budweiser, Miller lite, and Corona beer over the past 5 years. 
+			 
+			</p> 
+
+		<div id="superbowl"> Super Bowl 2012</p>
+		</div>
+
+		<div id="rebrand"> Miller Lite Rebrand</p>
+		</div>
+
+		<div class="header">
+
+			<div class ="legends"> <img src="images/legends.svg" style="width:1250px;height:300px;"> </div>
+			
+		</div>
+
+		<div class="headers">
+
+			<div class ="xaxis"> <img src="images/xaxis.svg" style="width:1096px;height:110px;"></div>
+
+		</div>
+
+		
+		<div>
+
+			<br></br>
+			<br></br>
+
+			<div id="chart"></div>
+
+			<div class="headerz"><div class ="yaxis"> <img src="images/yaxis.svg" style="width:100px;height:3270px;">
+			</div>
+	
+		</div> 
+
+		<div id="container">
+			<div>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+				<br></br>
+			</div>
+		</div>
+	</div>
+
+	</body>
+
+	<script type="text/javascript">
+
+
+	d3.csv("multiTimeline.csv", function(error, data) {
+
+		var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+		data.forEach(function(d) {
+			d.date = parseDate(d.date);
+			d.craftbeer = +d.craftbeer;
+			d.corona = +d.corona;
+			d.budweiser = +d.budweiser;
+			d.millerlite = +d.millerlite;
+		});
+
+		var padding = {top: 30, right: 130, bottom: 30, left: 30};
+		var w = 1200 - padding.left - padding.right;
+		var h = 3300 - padding.top - padding.bottom;
+
+		var yScale = d3.time.scale()
+			.domain(d3.extent(data, function(d) { return d.date; }))
+			.range([h, 0]);
+
+		var xScale = d3.scale.linear()
+			.domain([0, d3.max(data, function(d) { return d.craftbeer, d.corona, d.millerlite, d.budweiser; })])
+			.range([0, w]);
+
+		var rScale = d3.scale.linear()
+			.domain([0, d3.max(data, function(d) {return d.craftbeer; })])
+			.range([4, 4]);
+
+		var svg = d3.select("#chart")
+	        .append("svg")
+		    .attr("width", w + padding.left + padding.right)
+		    .attr("height", h + padding.top + padding.bottom)
+	    	.append("g")
+			.attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+
+// Start of Interactive D3 Components
+
+		// D3 creating DIV (containers) of the tooltips
+		var tooltip = d3.select("#chart").append("div")
+   			.attr("class", "tooltip")
+    		.style("opacity", 0);
+
+		svg.selectAll("dots_cr") // drawing the circles -- nothing new until line 98
+			.data(data)
+			.enter()
+			.append("circle")
+			.attr("class","craftbeer")
+			.attr("cx", function(d) {
+				return xScale(d.craftbeer);
+			})
+			.attr("cy", function(d) {
+				return yScale(d.date);
+			})
+			.attr("r", function(d) {
+				return rScale(d.craftbeer);
+			})
+			.on("mouseover", function(d) { // hover state events when mouse cursor enters a circle
+
+				this.parentNode.appendChild(this); // makes sure that circle that is being selected is not behind other circles.
+
+          		tooltip.transition() // enables the tooltip to animate into the page
+                .duration(200) // duration of the transition animation in milliseconds
+                .style("opacity", 1); // end state of animation -- begin state can be found in line 82
+          		
+          		tooltip.html(d.craftbeer + "<br> Craft <br> Beer") // text inside the tooltip
+          		.style("left", xScale(d.craftbeer) + -20 + "px") // horizontal position of text : needs some adjustment
+                .style("top", yScale(d.date) + -3300 + "px"); // vertical position of text
+
+      		})
+      		.on("mouseout", function(d) { // hover events when mouse cursor leaves the circle
+          		tooltip.transition()
+               .duration(500)
+               .style("opacity", 0);
+      		});
+
+// end of craft beer section//
+
+		svg.selectAll("dots_co") // drawing the circles -- nothing new until line 98
+			.data(data)
+			.enter()
+			.append("circle")
+			.attr("class","corona")
+			.attr("cx", function(d) {
+				return xScale(d.corona);
+			})
+			.attr("cy", function(d) {
+				return yScale(d.date);
+			})
+			.attr("r", function(d) {
+				return rScale(d.corona);
+			})
+			.on("mouseover", function(d) { // hover state events when mouse cursor enters a circle
+
+				this.parentNode.appendChild(this); // makes sure that circle that is being selected is not behind other circles.
+
+          		tooltip.transition() // enables the tooltip to animate into the page
+                .duration(200) // duration of the transition animation in milliseconds
+                .style("opacity", 1); // end state of animation -- begin state can be found in line 82
+          		
+          		tooltip.html(d.corona + "<br> Corona <br>") // text inside the tooltip
+          		.style("left", xScale(d.corona) + -20 + "px") // horizontal position of text : needs some adjustment
+                .style("top", yScale(d.date) + -3300 + "px"); // vertical position of text
+
+      		})
+      		.on("mouseout", function(d) { // hover events when mouse cursor leaves the circle
+          		tooltip.transition()
+               .duration(500)
+               .style("opacity", 0);
+      		});
+
+      		// end of corona section//
+
+		svg.selectAll("dots_bu") // drawing the circles -- nothing new until line 98
+			.data(data)
+			.enter()
+			.append("circle")
+			.attr("class","budweiser")
+			.attr("cx", function(d) {
+				return xScale(d.budweiser);
+			})
+			.attr("cy", function(d) {
+				return yScale(d.date);
+			})
+			.attr("r", function(d) {
+				return rScale(d.budweiser);
+			})
+			.on("mouseover", function(d) { // hover state events when mouse cursor enters a circle
+
+				this.parentNode.appendChild(this); // makes sure that circle that is being selected is not behind other circles.
+
+          		tooltip.transition() // enables the tooltip to animate into the page
+                .duration(200) // duration of the transition animation in milliseconds
+                .style("opacity", 1); // end state of animation -- begin state can be found in line 82
+          		
+          		tooltip.html(d.budweiser + "<br> Budweiser <br>") // text inside the tooltip
+          		.style("left", xScale(d.budweiser) + -20 + "px") // horizontal position of text : needs some adjustment
+                .style("top", yScale(d.date) + -3300 + "px"); // vertical position of text
+
+      		})
+      		.on("mouseout", function(d) { // hover events when mouse cursor leaves the circle
+          		tooltip.transition()
+               .duration(500)
+               .style("opacity", 0);
+      		});
+
+      		// end of Budweiser section//
+
+		svg.selectAll("dots_mi") // drawing the circles -- nothing new until line 98
+			.data(data)
+			.enter()
+			.append("circle")
+			.attr("class","millerlite")
+			.attr("cx", function(d) {
+				return xScale(d.millerlite);
+			})
+			.attr("cy", function(d) {
+				return yScale(d.date);
+			})
+			.attr("r", function(d) {
+				return rScale(d.millerlite);
+			})
+			.on("mouseover", function(d) { // hover state events when mouse cursor enters a circle
+
+				this.parentNode.appendChild(this); // makes sure that circle that is being selected is not behind other circles.
+
+          		tooltip.transition() // enables the tooltip to animate into the page
+                .duration(200) // duration of the transition animation in milliseconds
+                .style("opacity", 1); // end state of animation -- begin state can be found in line 82
+          		
+          		tooltip.html(d.millerlite + "<br>Miller</br> Lite") // text inside the tooltip
+          		.style("left", xScale(d.millerlite) + -20 + "px") // horizontal position of text : needs some adjustment
+                .style("top", yScale(d.date) + -3300 + "px"); // vertical position of text
+
+      		})
+      		.on("mouseout", function(d) { // hover events when mouse cursor leaves the circle
+          		tooltip.transition()
+               .duration(500)
+               .style("opacity", 0);
+      		});
+
+      		// end of Miller lite section//
+
+
+// End of Interactive D3 Components
+//---------------------------------//
+
+	});
+
+	</script>
+
+</html>
